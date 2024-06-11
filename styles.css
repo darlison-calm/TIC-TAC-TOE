@@ -1,0 +1,58 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: var(--background-color);
+}
+
+:root {
+  --font: "VT323", monospace;
+  --tic-color: #0000FF;
+  --tac-color:rgb(0, 255, 0);
+  --toe-color: #FF0000;
+  --background-color: #000000;
+  --title-size: 2rem;
+}
+/*HEADER SECTION*/
+
+header {
+  text-align: center;
+  font-family: var(--font);
+  font-size: var(--title-size);
+  padding: 14px;
+  margin-bottom: 30px;
+}
+
+.word1 {
+  color: var(--tic-color);
+}
+.word2 {
+  color: var(--tac-color);
+}
+.word3 {
+  color: var(--toe-color);
+}
+
+/*GAME BOARD*/
+
+.gameboard {
+  --g: 0px; /* the gap */
+  width: 400px; /* the size */
+  display: grid;
+  aspect-ratio: 1;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin: auto;
+  gap: var(--g);
+}
+
+.cell {
+  border: 2px solid rgb(0, 255, 0);
+  text-align: center;
+  padding: 20px;
+  cursor: pointer;
+}
