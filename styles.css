@@ -8,24 +8,27 @@
 
 body {
   background-color: var(--background-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 :root {
   --font: "VT323", monospace;
   --tic-color: #0000FF;
-  --tac-color:rgb(0, 255, 0);
-  --toe-color: #FF0000;
+  --tac-color:#00ff00e0;
+  --toe-color: #ff0000;
   --background-color: #000000;
   --title-size: 2rem;
 }
 /*HEADER SECTION*/
+
 
 header {
   text-align: center;
   font-family: var(--font);
   font-size: var(--title-size);
   padding: 14px;
-  margin-bottom: 30px;
 }
 
 .word1 {
@@ -38,21 +41,51 @@ header {
   color: var(--toe-color);
 }
 
+.btn {
+  text-align: center;
+  margin: 1em  0em;
+}
+
+button {
+  border: none;
+  color: white;
+  background-color: green;
+  padding: 10px 10px;
+  border-radius: 8px;
+  font-family: var(--font);
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+
 /*GAME BOARD*/
 
 .gameboard {
-  --g: 0px; /* the gap */
   width: 400px; /* the size */
   display: grid;
   aspect-ratio: 1;
   grid-template-columns: 1fr 1fr 1fr;
   margin: auto;
-  gap: var(--g);
 }
 
 .cell {
-  border: 2px solid rgb(0, 255, 0);
+  border: 2px solid var(--tac-color);
   text-align: center;
   padding: 20px;
   cursor: pointer;
+  text-align: center;
+  font-size: 100px;
+  font-family: var(--font);
+  box-shadow: 0px 0 8px 0px var(--tac-color);
+  user-select: none;
+  height: 145px;
+}
+
+
+.hover-effect-blue:hover {
+  background-color: #0000ff48;
+}
+
+.hover-effect-red:hover {
+  background-color: #ff000038;
 }
