@@ -8,9 +8,6 @@
 
 body {
   background-color: var(--background-color);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
 
 :root {
@@ -57,7 +54,6 @@ button {
   cursor: pointer;
 }
 
-
 /*GAME BOARD*/
 
 .gameboard {
@@ -89,3 +85,23 @@ button {
 .hover-effect-red:hover {
   background-color: #ff000038;
 }
+
+/*INPUT PLAYERS NAME*/
+
+#players-name {
+  display: flex;
+  background-color: aqua;
+}
+
+label{
+  display: flex;
+}
+
+label#p1-label {
+  color: var(--toe-color);
+}
+
+label#p2-label {
+  color: var(--tic-color);
+}
+

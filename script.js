@@ -1,7 +1,3 @@
-//TO DO:  
-//ADD RESET BUTTOM  
-//ADD INTERFACE TO ALLOW PLAYERS TO PUT IN THEIR NAMES
-
 const gameBoard = (function() {
   const board = ['', '', '', '', '', '', '', '', ''];
 
@@ -28,19 +24,52 @@ const gameBoard = (function() {
 
 })();
 
-function Player(sign) {
+const formHandle = (function(){
+  let playerX = Player(null, 'X')
+  let playerO = Player(null, 'O')
+  const closeButton = document.getElementById("close");
+  const formDialog = document.getElementById("form-dialog");
+  const userNameInput = document.getElementById("players-name");
+
+  closeButton.addEventListener("click", () => {
+    formDialog.close();
+  });
+
+  userNameInput.addEventListener("submit" , (e) => {
+    e.preventDefault();
+    const playerNames = playerName();
+    playerX = Player(playerNames.playerXname, 'X');
+    playerO = Player(playerNames.playerOname, 'O');
+
+    gameController.updatePlayerNames(playerX, playerO);
+
+    formDialog.close()
+  });
+  
   return {
-    getSign: function() {
-      return sign;
-    }
+    playerX, playerO
+  };
+
+})()
+
+
+function Player(name, sign) {
+  const playerName = name || sign;
+  return {
+    playerName, sign
   };
 };
 
 const gameController = (function(){
-  const playerOne = Player('X');
-  const playerTwo = Player('O');
+  let playerOne = formHandle.playerX;
+  let playerTwo = formHandle.playerO;
   let round = 1;
   let isOver = false;
+
+  const updatePlayerNames = (xName, Oname) => {
+    playerOne = xName;
+    playerTwo = Oname;
+  }
 
   const getRound = () => {
     return round;
@@ -51,7 +80,7 @@ const gameController = (function(){
     
     if(checkWinner()){
       isOver = true;
-      screenController.setResultMessage(getActivePlayerSign());
+      screenController.setResultMessage(getActivePlayerName());
       return
     }
 
@@ -62,7 +91,7 @@ const gameController = (function(){
     }
 
     round++;
-    screenController.setScreenMessage(`${getActivePlayerSign()}'s turn`)
+    screenController.setScreenMessage(`${getActivePlayerName()}'s turn`)
   }
 
   const checkWinner = () => {
@@ -78,14 +107,18 @@ const gameController = (function(){
     ];
 
     return winConditions.some((condition) => { 
-      return condition.every((index) => gameBoard.getCell(index) === getActivePlayerSign())
+      return condition.every((index) => gameBoard.getCell(index) == getActivePlayerSign())
     });
   }
 
   const getActivePlayerSign = () => {
-    return ( round & 1 ) ? playerOne.getSign() : playerTwo.getSign();
+    return ( round & 1 ) ? playerOne.sign : playerTwo.sign;
   }
-    
+
+  const getActivePlayerName = () => {
+    return ( round & 1 ) ? playerOne.playerName : playerTwo.playerName;
+  }
+  
   const resetGame = () => {
     round = 1;
     isOver = false;
@@ -95,8 +128,12 @@ const gameController = (function(){
     return isOver;
   }
 
+  const getPlayerXname = () => {
+    return playerOne.playerName
+  }
+
   return {
-    playRound, isGameOver, resetGame, getRound
+    playRound, isGameOver, resetGame, getRound, updatePlayerNames, getPlayerXname
   }
 
 })();
@@ -107,7 +144,7 @@ const screenController = (function(){
   const resetBtn = document.getElementById('btn');
 
   boardCells.forEach((cell) => {
-    cell.addEventListener("click", (e) =>{
+    cell.addEventListener("click", (e) => {
       if(gameController.isGameOver() || e.target.textContent !== "") return;
       gameController.playRound(parseInt(e.target.dataset.index));
       updateBoard();
@@ -117,7 +154,7 @@ const screenController = (function(){
   })
 
   boardCells.forEach((cell) => {
-    cell.addEventListener("mouseover", (e) =>{
+    cell.addEventListener("mouseover", (e) => {
       if(e.target.textContent !== '' || gameController.isGameOver()){
         e.target.classList.remove('hover-effect-red');
         e.target.classList.remove('hover-effect-blue');
@@ -127,7 +164,7 @@ const screenController = (function(){
     })
   })
 
-  resetBtn.addEventListener("click", (e) => {
+  resetBtn.addEventListener("click", () => {
     reset();
   })
 
@@ -148,7 +185,7 @@ const screenController = (function(){
     gameBoard.reset()
     gameController.resetGame();
     updateBoard();
-    setScreenMessage("X's turn");
+    setScreenMessage(`${gameController.getPlayerXname()}'s turn`);
     updateMessageColor(message);
   }
   
@@ -182,7 +219,7 @@ const screenController = (function(){
       setScreenMessage("It's a Draw!");
     }
     else {
-      setScreenMessage(`Player ${winner} has won!`);
+      setScreenMessage(`Player ${winner} wins!`);
     }
   }
 
@@ -196,4 +233,13 @@ const screenController = (function(){
     setResultMessage, setScreenMessage
   }
 })();
+
+
+function playerName(){
+  const playerXname = document.getElementById('p1-name').value;
+  const playerOname = document.getElementById('p2-name').value;
+  return {
+    playerOname, playerXname
+  }
+};
 

@@ -16,6 +16,22 @@
       <span class="word1">Tic-</span><span class="word2">Tac-</span><span class="word3">Toe</span>
     </h1>
   </header>
+  <dialog open id="form-dialog">
+    <form method="dialog" id="players-name">
+      <div class="form-group">
+        <label id="p1-label" for="p1-name">PLAYER X:</label>
+        <input type="text" name="p1-name" id="p1-name" placeholder="Enter Name" maxlength="12" class="input-control">
+      </div>
+      <div class="form-group">
+        <label id="p2-label" for="p2-name">PLAYER O:</label>
+        <input type="text" name="p2-name" id="p2-name" placeholder="Enter Name" maxlength="12" class="input-control">
+      </div>
+      <menu>
+        <button id="close" type="reset">CLOSE</button>
+        <button type="submit">CONFIRM</button>
+      </menu>
+    </form>
+  </dialog>
   <main>
     <div class="gameboard">
       <div class="cell" data-index="0"></div>
