@@ -31,6 +31,10 @@ const formHandle = (function(){
   const formDialog = document.getElementById("form-dialog");
   const userNameInput = document.getElementById("players-name");
 
+  window.addEventListener("DOMContentLoaded", () => {
+    formDialog.showModal()
+  })
+
   closeButton.addEventListener("click", () => {
     formDialog.close();
   });
@@ -51,7 +55,6 @@ const formHandle = (function(){
   };
 
 })()
-
 
 function Player(name, sign) {
   const playerName = name || sign;

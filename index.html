@@ -16,7 +16,7 @@
       <span class="word1">Tic-</span><span class="word2">Tac-</span><span class="word3">Toe</span>
     </h1>
   </header>
-  <dialog open id="form-dialog">
+  <dialog class="modal" id="form-dialog">
     <form method="dialog" id="players-name">
       <div class="form-group">
         <label id="p1-label" for="p1-name">PLAYER X:</label>
@@ -26,10 +26,10 @@
         <label id="p2-label" for="p2-name">PLAYER O:</label>
         <input type="text" name="p2-name" id="p2-name" placeholder="Enter Name" maxlength="12" class="input-control">
       </div>
-      <menu>
-        <button id="close" type="reset">CLOSE</button>
+      <div class="modal-btn">
+        <button id="close" type="reset" class="cancel-btn">CLOSE</button>
         <button type="submit">CONFIRM</button>
-      </menu>
+      </div>
     </form>
   </dialog>
   <main>

@@ -1,7 +1,14 @@
+html {
+  box-sizing: border-box;
+}
+
 *,
 *::after,
 *::before {
-  box-sizing: border-box;
+  box-sizing: inherit;
+}
+
+body, h1, h2, h3, h4, h5, h6, p, ul, ol{
   padding: 0;
   margin: 0;
 }
@@ -18,9 +25,8 @@ body {
   --background-color: #000000;
   --title-size: 2rem;
 }
+
 /*HEADER SECTION*/
-
-
 header {
   text-align: center;
   font-family: var(--font);
@@ -90,7 +96,17 @@ button {
 
 #players-name {
   display: flex;
-  background-color: aqua;
+  font-family: var(--font);
+  align-items: flex-end;
+  gap: 40px;
+}
+
+.modal {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.form-group {
+  font-size:60px;
 }
 
 label{
@@ -104,4 +120,22 @@ label#p1-label {
 label#p2-label {
   color: var(--tic-color);
 }
+
+.input-control {
+  font-family: var(--font);
+  padding: 0.2rem;
+  display: flex;
+  height: 40px;
+  font-size: 0.5em;
+}
+
+.modal-btn{
+  display: flex;
+  gap: 1.5rem;
+}
+
+.cancel-btn {
+  background-color: rgba(255, 0, 0, 0.5);
+}
+
 
