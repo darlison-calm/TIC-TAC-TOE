@@ -63,7 +63,7 @@ button {
 /*GAME BOARD*/
 
 .gameboard {
-  width: 400px; /* the size */
+  width: 400px;
   display: grid;
   aspect-ratio: 1;
   grid-template-columns: 1fr 1fr 1fr;
@@ -96,17 +96,22 @@ button {
 
 #players-name {
   display: flex;
+  flex-direction: column;
   font-family: var(--font);
-  align-items: flex-end;
-  gap: 40px;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+  flex-wrap: wrap;
 }
+
 
 .modal {
   background-color: rgba(0, 0, 0, 0.8);
 }
 
 .form-group {
-  font-size:60px;
+  font-size: 2.5em;
 }
 
 label{
@@ -126,7 +131,9 @@ label#p2-label {
   padding: 0.2rem;
   display: flex;
   height: 40px;
-  font-size: 0.5em;
+  font-size: 0.6em;
+  border-radius: 5px;
+  border: none;
 }
 
 .modal-btn{
@@ -137,5 +144,6 @@ label#p2-label {
 .cancel-btn {
   background-color: rgba(255, 0, 0, 0.5);
 }
+
 
 
